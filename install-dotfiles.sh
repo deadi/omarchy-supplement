@@ -5,7 +5,7 @@ REPO_URL="https://github.com/deadi/dotfiles"
 REPO_NAME="dotfiles"
 
 is_stow_installed() {
-  pacman -Qi "stow" &> /dev/null
+  pacman -Qi "stow" &>/dev/null
 }
 
 if ! is_stow_installed; then
@@ -30,11 +30,10 @@ if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
   stow zshrc
   stow ghostty
-  #stow tmux
+  stow tmux
   stow nvim
-  #stow starship
+  stow starship
 else
   echo "Failed to clone the repository."
   exit 1
 fi
-
