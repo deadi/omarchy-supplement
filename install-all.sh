@@ -4,6 +4,7 @@
 . ./install-stow.sh
 . ./install-hyprland-overrides.sh
 . ./install-ghostty.sh
+. ./install-zsh.sh
 . ./install-dotfiles.sh
 
 . ./set-shell.sh
