@@ -1,12 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-. ./install-zsh.sh
-. ./install-megacmd.sh
-. ./install-tmux.sh
-. ./install-ghostty.sh
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-. ./install-stow.sh
-. ./install-dotfiles.sh
-#. ./install-hyprland-overrides.sh
+. "$SCRIPT_DIR/install-zsh.sh"
+. "$SCRIPT_DIR/install-megacmd.sh"
+. "$SCRIPT_DIR/install-tmux.sh"
+. "$SCRIPT_DIR/install-ghostty.sh"
+. "$SCRIPT_DIR/install-stow.sh"
+. "$SCRIPT_DIR/install-dotfiles.sh"
+. "$SCRIPT_DIR/install-hyprland-overrides.sh"
 
-. ./set-shell.sh
+. "$SCRIPT_DIR/set-shell.sh"
