@@ -24,4 +24,5 @@ fi
 #chsh -s "$ZSH_PATH"
 #echo "Default shell changed to zsh. Please log out and log back in for the change to take effect."
 
-echo "Shell set to $ZSH_PATH (ghostty config: command = /usr/bin/zsh)"
+# adi: wenn zsh gewünscht, dann wie folgt setzen (nicht via chsh -s)
+#echo "Shell set to $ZSH_PATH (ghostty config: command = /usr/bin/zsh)"

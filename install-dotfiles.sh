@@ -33,7 +33,14 @@ if [ $? -eq 0 ]; then
   stow tmux
   stow nvim
   stow starship
+  stow aliases
 else
   echo "Failed to clone the repository."
   exit 1
 fi
+
+# ensure ~/.aliases is sourced in ~/.bashrc
+BASHRC="$HOME/.bashrc"
+ALIAS_LINE='[ -f "$HOME/.aliases" ] && . "$HOME/.aliases"'
+
+grep -Fxq "$ALIAS_LINE" "$BASHRC" || echo "$ALIAS_LINE" >>"$BASHRC"
