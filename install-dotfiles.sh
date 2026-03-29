@@ -33,6 +33,7 @@ if [ $? -eq 0 ]; then
   stow tmux
   stow nvim
   stow starship
+  stow hyprland
   stow aliases
 else
   echo "Failed to clone the repository."
