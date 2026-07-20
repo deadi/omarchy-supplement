@@ -1,28 +1,32 @@
 #!/bin/bash
 
-# Check if zsh is installed
+set -e
+
+# Ensure zsh is installed
 if ! command -v zsh &>/dev/null; then
-	echo "Zsh is not installed. Please run ./install-packages.sh first."
-	exit 1
+  echo "zsh not found. Install it first."
+  exit 1
 fi
 
-# Get the path to zsh
-ZSH_PATH=$(which zsh)
+ZSH_PATH="$(command -v zsh)"
 
-# Check if zsh is already the default shell
-if [ "$SHELL" = "$ZSH_PATH" ]; then
-	echo "Zsh is already your default shell."
-	exit 0
+# Ensure zsh is in /etc/shells
+if ! grep -qx "$ZSH_PATH" /etc/shells; then
+  echo "Adding zsh to /etc/shells"
+  echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
 fi
 
-# Add zsh to /etc/shells if not already there
-if ! grep -q "^$ZSH_PATH$" /etc/shells; then
-	echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+# Get current login shell (authoritative)
+CURRENT_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+
+if [ "$CURRENT_SHELL" = "$ZSH_PATH" ]; then
+  echo "zsh already set as login shell"
+  exit 0
 fi
 
-# Change the default shell to zsh
-#chsh -s "$ZSH_PATH"
-#echo "Default shell changed to zsh. Please log out and log back in for the change to take effect."
+echo "Setting login shell to zsh: $ZSH_PATH"
 
-# adi: wenn zsh gewünscht, dann wie folgt setzen (nicht via chsh -s)
-#echo "Shell set to $ZSH_PATH (ghostty config: command = /usr/bin/zsh)"
+# Set login shell
+chsh -s "$ZSH_PATH" "$USER"
+
+echo "Done. Log out and log back in."
