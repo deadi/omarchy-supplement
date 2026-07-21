@@ -12,6 +12,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 . "$SCRIPT_DIR/install-ghostty.sh"
 . "$SCRIPT_DIR/install-stow.sh"
 . "$SCRIPT_DIR/install-yazi.sh"
+. "$SCRIPT_DIR/install-uv-tools.sh"
 
 . "$SCRIPT_DIR/install-dotfiles.sh"
 . "$SCRIPT_DIR/install-hyprland-overrides.sh"
