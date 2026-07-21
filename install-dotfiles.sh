@@ -29,6 +29,7 @@ if [ $? -eq 0 ]; then
 
   cd "$REPO_NAME"
   #stow zshrc
+  stow bashrc   # manage ~/.bashrc via stow (includes ~/.aliases sourcing)
   stow ghostty
   stow tmux
   stow nvim
@@ -39,9 +40,3 @@ else
   echo "Failed to clone the repository."
   exit 1
 fi
-
-# ensure ~/.aliases is sourced in ~/.bashrc
-BASHRC="$HOME/.bashrc"
-ALIAS_LINE='[ -f "$HOME/.aliases" ] && . "$HOME/.aliases"'
-
-grep -Fxq "$ALIAS_LINE" "$BASHRC" || echo "$ALIAS_LINE" >>"$BASHRC"
